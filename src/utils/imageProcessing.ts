@@ -71,7 +71,10 @@ export async function processImage(
     await image.encode(encodeOptions);
 
     // Get the encoded data
-    const encodedData = await image[options.format].binary;
+    const encodedData = await image[options.format]?.binary;
+    if (!encodedData) {
+      throw new Error(`Failed to encode image to ${options.format} format`);
+    }
 
     // Create blob with correct mime type
     const mimeTypes: Record<string, string> = {
