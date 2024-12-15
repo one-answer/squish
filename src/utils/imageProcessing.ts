@@ -4,6 +4,7 @@ import * as jxl from '@jsquash/jxl';
 import * as png from '@jsquash/png';
 import * as webp from '@jsquash/webp';
 import type { OutputType, CompressionOptions } from '../types';
+import type { AvifEncodeOptions, JpegEncodeOptions, JxlEncodeOptions, WebpEncodeOptions } from '../types/encoders';
 import { ensureWasmLoaded } from './wasm';
 
 export async function decode(sourceType: string, fileBuffer: ArrayBuffer): Promise<ImageData> {
@@ -37,19 +38,34 @@ export async function encode(outputType: OutputType, imageData: ImageData, optio
   await ensureWasmLoaded(outputType);
 
   try {
-    const quality = options.quality / 100;
-
     switch (outputType) {
-      case 'avif':
-        return await avif.encode(imageData, { quality });
-      case 'jpeg':
-        return await jpeg.encode(imageData, { quality });
-      case 'jxl':
-        return await jxl.encode(imageData, { quality });
+      case 'avif': {
+        const avifOptions: AvifEncodeOptions = {
+          quality: options.quality,
+          effort: 4 // Medium encoding effort
+        };
+        return await avif.encode(imageData, avifOptions as any);
+      }
+      case 'jpeg': {
+        const jpegOptions: JpegEncodeOptions = {
+          quality: options.quality
+        };
+        return await jpeg.encode(imageData, jpegOptions as any);
+      }
+      case 'jxl': {
+        const jxlOptions: JxlEncodeOptions = {
+          quality: options.quality
+        };
+        return await jxl.encode(imageData, jxlOptions as any);
+      }
       case 'png':
         return await png.encode(imageData);
-      case 'webp':
-        return await webp.encode(imageData, { quality });
+      case 'webp': {
+        const webpOptions: WebpEncodeOptions = {
+          quality: options.quality
+        };
+        return await webp.encode(imageData, webpOptions as any);
+      }
       default:
         throw new Error(`Unsupported output type: ${outputType}`);
     }
