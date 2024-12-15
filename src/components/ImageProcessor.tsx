@@ -25,6 +25,7 @@ export function ImageProcessor() {
 
   const processImages = useCallback(async () => {
     setIsProcessing(true);
+    setProcessedImages([]); // Clear any existing processed images
     try {
       const processed = await Promise.all(
         images.map(file => processImage(file, options))
@@ -38,15 +39,16 @@ export function ImageProcessor() {
   }, [images, options]);
 
   const downloadAll = useCallback(() => {
-    processedImages.forEach((image) => {
+    processedImages.forEach((image, index) => {
       const extension = formatConfigs[options.format].extension;
-      const fileName = image.file.name.replace(/\.[^/.]+$/, '') + '.' + extension;
+      const originalName = images[index].name.replace(/\.[^/.]+$/, '');
+      const fileName = `${originalName}.${extension}`;
       const link = document.createElement('a');
       link.href = image.url;
-      link.download = `optimized-${fileName}`;
+      link.download = fileName;
       link.click();
     });
-  }, [processedImages, options.format]);
+  }, [processedImages, options.format, images]);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -88,7 +90,7 @@ export function ImageProcessor() {
                   key={file.name + index}
                   file={file}
                   processedImage={processedImages[index]}
-                  showProcessed={processedImages.length > 0}
+                  showProcessed={!isProcessing && processedImages.length > 0}
                 />
               ))}
             </div>
@@ -106,7 +108,7 @@ export function ImageProcessor() {
                 <ImageIcon className="w-4 h-4 mr-2" />
                 {isProcessing ? 'Processing...' : 'Process Images'}
               </button>
-              {processedImages.length > 0 && (
+              {!isProcessing && processedImages.length > 0 && (
                 <button
                   onClick={downloadAll}
                   className="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 flex items-center"
@@ -121,7 +123,7 @@ export function ImageProcessor() {
 
         <footer className="mt-12 text-center text-sm text-gray-500">
           <p>
-            Inspired by{' '}
+            Powered by{' '}
             <a
               href="https://github.com/GoogleChromeLabs/squoosh"
               target="_blank"
@@ -129,8 +131,7 @@ export function ImageProcessor() {
               className="text-blue-500 hover:underline"
             >
               Squoosh
-            </a>{' '}
-            for single-file processing capabilities
+            </a>
           </p>
         </footer>
       </div>
