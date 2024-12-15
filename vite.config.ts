@@ -12,4 +12,16 @@ export default defineConfig({
       '@jsquash/webp',
     ],
   },
+  build: {
+    target: 'esnext',
+    rollupOptions: {
+      output: {
+        format: 'es',
+        inlineDynamicImports: true
+      }
+    }
+  },
+  worker: {
+    format: 'es'
+  }
 });
