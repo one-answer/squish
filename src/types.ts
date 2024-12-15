@@ -1,34 +1,24 @@
-export type ImageFormat = 
-  | 'mozjpeg'
-  | 'webp'
-  | 'avif'
-  | 'oxipng'
-  | 'jxl';
-
-export interface ProcessingOptions {
-  maxWidth: number;
-  format: ImageFormat;
-  quality: number;
-  progressive?: boolean; // For JPEG
-  lossless?: boolean; // For WebP, AVIF, JXL
-  effort?: number; // For OxiPNG
-}
-
-export interface ProcessedImage {
+export interface ImageFile {
+  id: string;
   file: File;
-  url: string;
+  preview?: string;
+  status: 'pending' | 'processing' | 'complete' | 'error';
+  error?: string;
   originalSize: number;
-  processedSize: number;
+  compressedSize?: number;
+  outputType?: OutputType;
+  blob?: Blob;
 }
 
-export interface FormatConfig {
-  label: string;
-  qualityMin: number;
-  qualityMax: number;
-  qualityDefault: number;
-  qualityStep: number;
-  extension: string;
-  hasProgressive?: boolean;
-  hasLossless?: boolean;
-  isEffortBasedQuality?: boolean; // For formats like OxiPNG where quality represents effort
+export type OutputType = 'avif' | 'jpeg' | 'jxl' | 'png' | 'webp';
+
+export interface FormatQualitySettings {
+  avif: number;
+  jpeg: number;
+  jxl: number;
+  webp: number;
+}
+
+export interface CompressionOptions {
+  quality: number;
 }

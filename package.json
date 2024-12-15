@@ -1,5 +1,5 @@
 {
-  "name": "vite-react-typescript-starter",
+  "name": "squish-image-compressor",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,7 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@squoosh/lib": "^0.5.3",
+    "@jsquash/avif": "^1.1.0",
+    "@jsquash/jpeg": "^1.2.0",
+    "@jsquash/jxl": "^1.0.0",
+    "@jsquash/png": "^2.0.0",
+    "@jsquash/webp": "^1.2.0",
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
