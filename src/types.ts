@@ -1,13 +1,17 @@
 export type ImageFormat = 
   | 'mozjpeg'
-  | 'webp';
+  | 'webp'
+  | 'avif'
+  | 'oxipng'
+  | 'jxl';
 
 export interface ProcessingOptions {
   maxWidth: number;
   format: ImageFormat;
   quality: number;
   progressive?: boolean; // For JPEG
-  lossless?: boolean; // For WebP
+  lossless?: boolean; // For WebP, AVIF, JXL
+  effort?: number; // For OxiPNG
 }
 
 export interface ProcessedImage {
@@ -26,4 +30,5 @@ export interface FormatConfig {
   extension: string;
   hasProgressive?: boolean;
   hasLossless?: boolean;
+  isEffortBasedQuality?: boolean; // For formats like OxiPNG where quality represents effort
 }
