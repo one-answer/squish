@@ -4,6 +4,8 @@
 
 A modern, browser-based image compression tool that leverages WebAssembly for high-performance image optimization. Squish supports multiple formats and provides an intuitive interface for compressing your images without compromising quality.
 
+![](https://squish.addy.ie/meta.jpg)
+
 ## ✨ Features
 
 - 🖼️ Support for multiple image formats:
