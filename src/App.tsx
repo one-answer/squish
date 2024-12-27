@@ -4,7 +4,7 @@ import { CompressionOptions } from './components/CompressionOptions';
 import { DropZone } from './components/DropZone';
 import { ImageList } from './components/ImageList';
 import { DownloadAll } from './components/DownloadAll';
-import { useImageProcessing } from './hooks/useImageProcessing';
+import { useImageQueue } from './hooks/useImageQueue';
 import { DEFAULT_QUALITY_SETTINGS } from './utils/formatDefaults';
 import type { ImageFile, OutputType, CompressionOptions as CompressionOptionsType } from './types';
 
@@ -15,7 +15,7 @@ export function App() {
     quality: DEFAULT_QUALITY_SETTINGS.webp,
   });
 
-  const { processImage } = useImageProcessing(options, outputType, setImages);
+  const { addToQueue } = useImageQueue(options, outputType, setImages);
 
   const handleOutputTypeChange = useCallback((type: OutputType) => {
     setOutputType(type);
@@ -25,9 +25,15 @@ export function App() {
   }, []);
 
   const handleFilesDrop = useCallback((newImages: ImageFile[]) => {
+    // First add all images to state
     setImages((prev) => [...prev, ...newImages]);
-    newImages.forEach(processImage);
-  }, [processImage]);
+    
+    // Use requestAnimationFrame to wait for render to complete
+    requestAnimationFrame(() => {
+      // Then add to queue after UI has updated
+      newImages.forEach(image => addToQueue(image.id));
+    });
+  }, [addToQueue]);
 
   const handleRemoveImage = useCallback((id: string) => {
     setImages((prev) => {

@@ -2,7 +2,7 @@ export interface ImageFile {
   id: string;
   file: File;
   preview?: string;
-  status: 'pending' | 'processing' | 'complete' | 'error';
+  status: 'pending' | 'queued' | 'processing' | 'complete' | 'error';
   error?: string;
   originalSize: number;
   compressedSize?: number;

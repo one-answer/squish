@@ -23,6 +23,7 @@ A modern, browser-based image compression tool that leverages WebAssembly for hi
   - Real-time preview
   - Size reduction statistics
   - Drag and drop interface
+  - Smart queue for compressing large number of files
 
 ## 🛠️ Technology
 
