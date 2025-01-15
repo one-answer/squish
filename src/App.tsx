@@ -57,9 +57,7 @@ export function App() {
   const handleDownloadAll = useCallback(async () => {
     const completedImages = images.filter((img) => img.status === "complete");
 
-    for (let i = 0; i < completedImages.length; i++) {
-      const image = completedImages[i];
-      
+    for (const image of completedImages) {
       if (image.blob && image.outputType) {
         const link = document.createElement("a");
         link.href = URL.createObjectURL(image.blob);
