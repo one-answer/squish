@@ -54,17 +54,20 @@ export function App() {
     setImages([]);
   }, [images]);
 
-  const handleDownloadAll = useCallback(() => {
-    const completedImages = images.filter(img => img.status === 'complete');
-    completedImages.forEach(image => {
+  const handleDownloadAll = useCallback(async () => {
+    const completedImages = images.filter((img) => img.status === "complete");
+
+    for (const image of completedImages) {
       if (image.blob && image.outputType) {
-        const link = document.createElement('a');
+        const link = document.createElement("a");
         link.href = URL.createObjectURL(image.blob);
-        link.download = `${image.file.name.split('.')[0]}.${image.outputType}`;
+        link.download = `${image.file.name.split(".")[0]}.${image.outputType}`;
         link.click();
         URL.revokeObjectURL(link.href);
       }
-    });
+
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    }
   }, [images]);
 
   const completedImages = images.filter(img => img.status === 'complete').length;
