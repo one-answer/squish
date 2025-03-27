@@ -17,19 +17,19 @@ export function CompressionOptions({
   const { t } = useTranslation();
   
   return (
-    <div className="space-y-6 bg-white p-6 rounded-lg shadow-sm">
+    <div className="space-y-6">
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-700 mb-3">
           {t('compressionOptions.outputFormat')}
         </label>
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
           {(['avif', 'jpeg', 'jxl', 'png', 'webp'] as const).map((format) => (
             <button
               key={format}
-              className={`px-4 py-2 rounded-md text-sm font-medium uppercase ${
+              className={`format-button ${
                 outputType === format
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  ? 'format-button-active'
+                  : 'format-button-inactive'
               }`}
               onClick={() => onOutputTypeChange(format)}
             >
@@ -41,9 +41,14 @@ export function CompressionOptions({
 
       {outputType !== 'png' && (
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            {t('compressionOptions.quality')}: {options.quality}%
-          </label>
+          <div className="flex justify-between items-center mb-3">
+            <label className="block text-sm font-medium text-gray-700">
+              {t('compressionOptions.quality')}
+            </label>
+            <span className="text-sm font-semibold bg-gradient-to-r from-blue-500 to-teal-500 text-white px-3 py-1 rounded-full">
+              {options.quality}%
+            </span>
+          </div>
           <input
             type="range"
             min="1"
@@ -52,8 +57,13 @@ export function CompressionOptions({
             onChange={(e) =>
               onOptionsChange({ quality: Number(e.target.value) })
             }
-            className="w-full"
+            className="input-range"
           />
+          <div className="flex justify-between mt-1">
+            <span className="text-xs text-gray-500">1%</span>
+            <span className="text-xs text-gray-500">50%</span>
+            <span className="text-xs text-gray-500">100%</span>
+          </div>
         </div>
       )}
     </div>

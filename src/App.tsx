@@ -1,10 +1,9 @@
 import { useState, useCallback } from 'react';
-import { Image, Trash2 } from 'lucide-react';
+import { Image, Trash2, Download } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { CompressionOptions } from './components/CompressionOptions';
 import { DropZone } from './components/DropZone';
 import { ImageList } from './components/ImageList';
-import { DownloadAll } from './components/DownloadAll';
 import { LanguageSelector } from './components/LanguageSelector';
 import { useImageQueue } from './hooks/useImageQueue';
 import { DEFAULT_QUALITY_SETTINGS } from './utils/formatDefaults';
@@ -76,33 +75,47 @@ export function App() {
   const completedImages = images.filter(img => img.status === 'complete').length;
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-4xl mx-auto px-4 py-12">
-        <div className="text-center mb-8">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Image className="w-8 h-8 text-blue-500" />
-            <h1 className="text-3xl font-bold text-gray-900">{t('appTitle')}</h1>
+    <div className="min-h-screen">
+      <div className="page-container">
+        <div className="header-container">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-teal-500 flex items-center justify-center shadow-md">
+              <Image className="w-7 h-7 text-white" />
+            </div>
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
+              {t('appTitle')}
+            </h1>
           </div>
-          <p className="text-gray-600">
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto mb-4">
             {t('appDescription')}
           </p>
-          <div className="mt-4 flex justify-center">
+          <div className="flex justify-center">
             <LanguageSelector />
           </div>
         </div>
 
-        <div className="space-y-6">
-          <CompressionOptions
-            options={options}
-            outputType={outputType}
-            onOptionsChange={setOptions}
-            onOutputTypeChange={handleOutputTypeChange}
-          />
+        <div className="space-y-8">
+          <div className="card p-6">
+            <CompressionOptions
+              options={options}
+              outputType={outputType}
+              onOptionsChange={setOptions}
+              onOutputTypeChange={handleOutputTypeChange}
+            />
+          </div>
 
           <DropZone onFilesDrop={handleFilesDrop} />
 
           {completedImages > 0 && (
-            <DownloadAll onDownloadAll={handleDownloadAll} count={completedImages} />
+            <div className="flex justify-center">
+              <button 
+                onClick={handleDownloadAll}
+                className="btn-primary"
+              >
+                <Download className="w-5 h-5" />
+                {t('downloadAll')} ({completedImages})
+              </button>
+            </div>
           )}
 
           <ImageList 
@@ -113,7 +126,7 @@ export function App() {
           {images.length > 0 && (
             <button
               onClick={handleClearAll}
-              className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+              className="btn-primary bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 w-full"
             >
               <Trash2 className="w-5 h-5" />
               {t('clearAll')}

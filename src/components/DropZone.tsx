@@ -1,5 +1,5 @@
-import { useCallback } from 'react';
-import { Upload } from 'lucide-react';
+import { useCallback, useState } from 'react';
+import { Upload, ImageIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import type { ImageFile } from '../types';
 
@@ -9,9 +9,11 @@ interface DropZoneProps {
 
 export function DropZone({ onFilesDrop }: DropZoneProps) {
   const { t } = useTranslation();
+  const [isDragging, setIsDragging] = useState(false);
 
   const handleDrop = useCallback((e: React.DragEvent) => {
     e.preventDefault();
+    setIsDragging(false);
     const files = Array.from(e.dataTransfer.files)
       .filter(file => file.type.startsWith('image/') || file.name.toLowerCase().endsWith('jxl'))
       .map(file => ({
@@ -25,6 +27,12 @@ export function DropZone({ onFilesDrop }: DropZoneProps) {
 
   const handleDragOver = useCallback((e: React.DragEvent) => {
     e.preventDefault();
+    setIsDragging(true);
+  }, []);
+
+  const handleDragLeave = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(false);
   }, []);
 
   const handleFileInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,9 +50,10 @@ export function DropZone({ onFilesDrop }: DropZoneProps) {
 
   return (
     <div
-      className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center hover:border-blue-500 transition-colors"
+      className={`dropzone ${isDragging ? 'dropzone-active border-teal-400' : 'border-gray-300 hover:border-blue-400'}`}
       onDrop={handleDrop}
       onDragOver={handleDragOver}
+      onDragLeave={handleDragLeave}
     >
       <input
         type="file"
@@ -56,14 +65,17 @@ export function DropZone({ onFilesDrop }: DropZoneProps) {
       />
       <label
         htmlFor="fileInput"
-        className="cursor-pointer flex flex-col items-center gap-4"
+        className="cursor-pointer flex flex-col items-center gap-6"
       >
-        <Upload className="w-12 h-12 text-gray-400" />
+        <div className="w-20 h-20 rounded-full bg-gradient-to-r from-blue-100 to-teal-100 flex items-center justify-center">
+          <Upload className="w-10 h-10 text-teal-500" />
+        </div>
         <div>
-          <p className="text-lg font-medium text-gray-700">
+          <p className="text-xl font-medium text-gray-800 mb-2">
             {t('dropzone.title')}
           </p>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-500 flex items-center justify-center gap-1">
+            <ImageIcon className="w-4 h-4" />
             {t('dropzone.acceptedFormats')}
           </p>
         </div>
