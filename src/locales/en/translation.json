@@ -1,5 +1,5 @@
 {
-  "appTitle": "Squish",
+  "appTitle": "小图精灵",
   "appDescription": "Compress and convert your images to AVIF, JPEG, JPEG XL, PNG, or WebP",
   "compressionOptions": {
     "outputFormat": "Output Format",

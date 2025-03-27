@@ -1,5 +1,5 @@
 {
-  "appTitle": "Squish",
+  "appTitle": "小图精灵",
   "appDescription": "压缩并转换您的图片为AVIF、JPEG、JPEG XL、PNG或WebP格式",
   "compressionOptions": {
     "outputFormat": "输出格式",
