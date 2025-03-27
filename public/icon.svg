@@ -1,1 +1,43 @@
-<?xml version="1.0" ?><svg id="Icons" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style>.cls-1{fill:url(#linear-gradient);}.cls-2{fill:#fff;}.cls-3{fill:url(#linear-gradient-2);}</style><linearGradient gradientUnits="userSpaceOnUse" id="linear-gradient" x1="12" x2="12" y1="1" y2="17.101"><stop offset="0" stop-color="#a6f9ff"/><stop offset="1" stop-color="#3ed0f7"/></linearGradient><linearGradient id="linear-gradient-2" x1="12.05" x2="12.05" xlink:href="#linear-gradient" y1="12.159" y2="22.632"/></defs><rect class="cls-1" height="22" rx="4" width="22" x="1" y="1"/><circle class="cls-2" cx="7" cy="7" r="2"/><path class="cls-3" d="M23,18v1a4,4,0,0,1-4,4H5a4,4,0,0,1-3.9-3.1l7.193-7.193a1,1,0,0,1,1.414,0l1.807,1.807a1,1,0,0,0,1.46-.05L15.3,11.806a1,1,0,0,1,1.46-.05Z"/></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle with gradient -->
+  <circle cx="256" cy="256" r="248" fill="url(#paint0_radial)" stroke="#4ECDC4" stroke-width="16"/>
+  
+  <!-- Elf hat -->
+  <path d="M256 80C200 130 180 190 190 260C240 240 272 240 322 260C332 190 312 130 256 80Z" fill="#FF6B6B" stroke="#556270" stroke-width="8" stroke-linejoin="round"/>
+  
+  <!-- Elf face -->
+  <circle cx="256" cy="290" r="70" fill="#F8F3E6" stroke="#556270" stroke-width="8"/>
+  
+  <!-- Eyes -->
+  <circle cx="230" cy="280" r="12" fill="#556270"/>
+  <circle cx="282" cy="280" r="12" fill="#556270"/>
+  
+  <!-- Smile -->
+  <path d="M230 315C240 330 272 330 282 315" stroke="#556270" stroke-width="8" stroke-linecap="round"/>
+  
+  <!-- Elf ears -->
+  <path d="M180 290C160 270 150 240 170 220" stroke="#556270" stroke-width="8" stroke-linecap="round"/>
+  <path d="M332 290C352 270 362 240 342 220" stroke="#556270" stroke-width="8" stroke-linecap="round"/>
+  
+  <!-- Image frame -->
+  <rect x="170" y="350" width="172" height="120" rx="20" fill="#4ECDC4" stroke="#556270" stroke-width="8"/>
+  
+  <!-- Image compression visual (arrows) -->
+  <path d="M200 410L240 370L280 410" stroke="white" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M240 370L240 450" stroke="white" stroke-width="12" stroke-linecap="round"/>
+  <path d="M312 410L312 390" stroke="white" stroke-width="12" stroke-linecap="round"/>
+  
+  <!-- Star sparkles -->
+  <path d="M150 170L160 180L170 170L160 160L150 170Z" fill="#FFE66D" stroke="#556270" stroke-width="4"/>
+  <path d="M350 190L360 200L370 190L360 180L350 190Z" fill="#FFE66D" stroke="#556270" stroke-width="4"/>
+  <path d="M330 120L340 130L350 120L340 110L330 120Z" fill="#FFE66D" stroke="#556270" stroke-width="4"/>
+  
+  <!-- Gradients -->
+  <defs>
+    <radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(256 256) rotate(90) scale(248)">
+      <stop offset="0" stop-color="#C7F9F0"/>
+      <stop offset="1" stop-color="#A1E8E1"/>
+    </radialGradient>
+  </defs>
+</svg>
