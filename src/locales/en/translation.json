@@ -1,0 +1,23 @@
+{
+  "appTitle": "Squish",
+  "appDescription": "Compress and convert your images to AVIF, JPEG, JPEG XL, PNG, or WebP",
+  "compressionOptions": {
+    "outputFormat": "Output Format",
+    "quality": "Quality"
+  },
+  "dropzone": {
+    "title": "Drop your images here",
+    "subtitle": "or click to browse",
+    "acceptedFormats": "Accepts JPG, PNG, WebP, AVIF"
+  },
+  "downloadAll": "Download All",
+  "clearAll": "Clear All",
+  "imageList": {
+    "original": "Original",
+    "compressed": "Compressed",
+    "processing": "Processing...",
+    "error": "Error",
+    "savingPercent": "Saving {{percent}}%"
+  },
+  "languageSelector": "Language"
+}

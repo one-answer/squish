@@ -1,5 +1,6 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { Upload } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import type { ImageFile } from '../types';
 
 interface DropZoneProps {
@@ -7,6 +8,8 @@ interface DropZoneProps {
 }
 
 export function DropZone({ onFilesDrop }: DropZoneProps) {
+  const { t } = useTranslation();
+
   const handleDrop = useCallback((e: React.DragEvent) => {
     e.preventDefault();
     const files = Array.from(e.dataTransfer.files)
@@ -58,10 +61,10 @@ export function DropZone({ onFilesDrop }: DropZoneProps) {
         <Upload className="w-12 h-12 text-gray-400" />
         <div>
           <p className="text-lg font-medium text-gray-700">
-            Drop images here or click to upload
+            {t('dropzone.title')}
           </p>
           <p className="text-sm text-gray-500">
-            Supports JPEG, PNG, WebP, AVIF, and JXL
+            {t('dropzone.acceptedFormats')}
           </p>
         </div>
       </label>

@@ -1,4 +1,4 @@
-import React from 'react';
+import { useTranslation } from 'react-i18next';
 import type { OutputType, CompressionOptions } from '../types';
 
 interface CompressionOptionsProps {
@@ -14,11 +14,13 @@ export function CompressionOptions({
   onOptionsChange,
   onOutputTypeChange,
 }: CompressionOptionsProps) {
+  const { t } = useTranslation();
+  
   return (
     <div className="space-y-6 bg-white p-6 rounded-lg shadow-sm">
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
-          Output Format
+          {t('compressionOptions.outputFormat')}
         </label>
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
           {(['avif', 'jpeg', 'jxl', 'png', 'webp'] as const).map((format) => (
@@ -40,7 +42,7 @@ export function CompressionOptions({
       {outputType !== 'png' && (
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Quality: {options.quality}%
+            {t('compressionOptions.quality')}: {options.quality}%
           </label>
           <input
             type="range"

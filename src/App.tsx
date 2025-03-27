@@ -1,14 +1,17 @@
-import React, { useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { Image, Trash2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { CompressionOptions } from './components/CompressionOptions';
 import { DropZone } from './components/DropZone';
 import { ImageList } from './components/ImageList';
 import { DownloadAll } from './components/DownloadAll';
+import { LanguageSelector } from './components/LanguageSelector';
 import { useImageQueue } from './hooks/useImageQueue';
 import { DEFAULT_QUALITY_SETTINGS } from './utils/formatDefaults';
 import type { ImageFile, OutputType, CompressionOptions as CompressionOptionsType } from './types';
 
 export function App() {
+  const { t } = useTranslation();
   const [images, setImages] = useState<ImageFile[]>([]);
   const [outputType, setOutputType] = useState<OutputType>('webp');
   const [options, setOptions] = useState<CompressionOptionsType>({
@@ -78,11 +81,14 @@ export function App() {
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-2 mb-4">
             <Image className="w-8 h-8 text-blue-500" />
-            <h1 className="text-3xl font-bold text-gray-900">Squish</h1>
+            <h1 className="text-3xl font-bold text-gray-900">{t('appTitle')}</h1>
           </div>
           <p className="text-gray-600">
-            Compress and convert your images to AVIF, JPEG, JPEG XL, PNG, or WebP
+            {t('appDescription')}
           </p>
+          <div className="mt-4 flex justify-center">
+            <LanguageSelector />
+          </div>
         </div>
 
         <div className="space-y-6">
@@ -110,7 +116,7 @@ export function App() {
               className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
             >
               <Trash2 className="w-5 h-5" />
-              Clear All
+              {t('clearAll')}
             </button>
           )}
         </div>

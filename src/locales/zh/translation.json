@@ -1,0 +1,23 @@
+{
+  "appTitle": "Squish",
+  "appDescription": "压缩并转换您的图片为AVIF、JPEG、JPEG XL、PNG或WebP格式",
+  "compressionOptions": {
+    "outputFormat": "输出格式",
+    "quality": "质量"
+  },
+  "dropzone": {
+    "title": "将图片拖放到这里",
+    "subtitle": "或点击浏览",
+    "acceptedFormats": "支持JPG、PNG、WebP、AVIF格式"
+  },
+  "downloadAll": "全部下载",
+  "clearAll": "全部清除",
+  "imageList": {
+    "original": "原始图片",
+    "compressed": "压缩后",
+    "processing": "处理中...",
+    "error": "错误",
+    "savingPercent": "节省 {{percent}}%"
+  },
+  "languageSelector": "语言"
+}
